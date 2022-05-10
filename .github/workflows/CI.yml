@@ -1,0 +1,100 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    branches:
+      - develop
+  release:
+    types:
+      - created
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' || github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Cache NPM dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Clean install Node.js dependencies
+      run: npm ci
+
+  prerelease:
+    name: PreRelease
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.base_ref == 'develop'
+    needs: build
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js 12.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: '12.x'
+        registry-url: https://npm.pkg.github.com/
+        scope: '@pagonxt'
+    - name: setup git config
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+    - name: setup preId ID
+      run: |
+        env:
+          PREID: echo "${{ github.event.pull_request.number || 'dev' }}"
+        run: echo $PREID
+    - name: PreRelease Node.js module
+      run: |
+        npm version prerelease --preid=$PREID
+        git add package*.json
+        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
+        npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    needs: build
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js 12.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: '12.x'
+        registry-url: https://npm.pkg.github.com/
+        scope: '@pagonxt'
+    - name: setup git config
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+    - name: Release Node.js module
+      run: |
+        npm version ${{ github.ref_name }}
+        npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
