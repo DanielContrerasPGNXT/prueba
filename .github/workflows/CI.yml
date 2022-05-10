@@ -16,6 +16,26 @@ on:
 
 jobs:
 
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    env:
+      PREID: ${{ github.event.number }}_PR
+    steps:
+    - name: Setting up prerelease ID if PR
+      if: github.event_name != 'pull_request'
+      env:
+        PREID: ${{ github.event.number }}
+      run: |
+        echo $PREID
+    - name: Setting up prerelease ID if not PR
+      if: github.event_name != 'pull_request'
+      env:
+        PREID: dev
+      run: |
+        echo $PREID
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -45,8 +65,19 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' || github.base_ref == 'develop'
     needs: build
-
     steps:
+    - name: Setting up prerelease ID if PR
+      if: github.event_name == 'pull_request'
+      env:
+        PREID: ${{ github.event.number }}_PR
+      run: |
+        echo $PREID
+    - name: Setting up prerelease ID if not PR
+      if: github.event_name != 'pull_request'
+      env:
+        PREID: dev
+      run: |
+        echo $PREID
     - name: Checkout
       uses: actions/checkout@v2
     - name: Setup Node.js 12.x
@@ -59,11 +90,6 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: setup preId ID
-      run: |
-        env:
-          PREID: echo "${{ github.event.pull_request.number || 'dev' }}"
-        run: echo $PREID
     - name: PreRelease Node.js module
       run: |
         npm version prerelease --preid=$PREID
