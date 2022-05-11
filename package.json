@@ -1,11 +1,14 @@
 {
-  "name": "prueba_dca",
-  "version": "1.0.1-PR7.0",
+  "name": "dcaprueba",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/DanielContrerasPGNXT/prueba"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
