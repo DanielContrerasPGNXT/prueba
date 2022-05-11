@@ -56,7 +56,7 @@ jobs:
   prerelease:
     name: PreRelease
     runs-on: ubuntu-latest
-    if: github.event_name != 'release'
+    if: github.base_ref == 'dev'
     needs: build
     steps:
     - name: Checkout
@@ -71,7 +71,7 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: PreRelease Node.js modul if PR
+    - name: PreRelease Node.js module in PR
       if: github.event_name == 'pull_request'
       env:
         PREID: PR${{ github.event.number }}
@@ -82,7 +82,7 @@ jobs:
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish --access public
-    - name: PreRelease Node.js modul if not PR
+    - name: PreRelease Node.js module in dev
       if: github.event_name != 'pull_request'
       env:
         PREID: dev
