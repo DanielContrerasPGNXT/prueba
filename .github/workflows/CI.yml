@@ -76,7 +76,7 @@ jobs:
       if: github.event_name == 'pull_request'
       env:
         PREID: ${{ github.event.number }}_PR
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
       run: |
         echo $PREID
         npm version prerelease --preid=$(echo $PREID)
@@ -87,7 +87,7 @@ jobs:
       if: github.event_name != 'pull_request'
       env:
         PREID: dev
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
       run: |
         echo $PREID
         npm version prerelease --preid=$(echo $PREID)
@@ -119,4 +119,4 @@ jobs:
         npm version ${{ github.ref_name }}
         npm publish
       env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
