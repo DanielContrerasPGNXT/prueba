@@ -80,7 +80,7 @@ jobs:
         npm version prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
-        npm publish
+        npm publish --access public
     - name: PreRelease Node.js modul if not PR
       if: github.event_name != 'pull_request'
       env:
@@ -90,7 +90,7 @@ jobs:
         echo $PREID
         npm version prerelease --preid=$(echo $PREID)
         git add package*.json
-        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
+        git push origin HEAD:dev --force
         npm publish --access public
 
   release:
