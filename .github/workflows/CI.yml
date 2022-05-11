@@ -28,7 +28,6 @@ jobs:
         PREID: PR${{ github.event.number }}
       run: |
         echo $PREID
-        echo ${{ github.base_ref }}
 
   build:
     name: Build
@@ -57,7 +56,7 @@ jobs:
   prerelease:
     name: PreRelease
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.base_ref == 'dev'
+    if: github.event_name != 'release'
     needs: build
     steps:
     - name: Checkout
