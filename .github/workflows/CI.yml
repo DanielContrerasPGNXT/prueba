@@ -65,7 +65,7 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: https://npm.pkg.github.com/
-        scope: '@OWNER'
+        scope: '@DanielContrerasPGNXT'
     - name: setup git config
       run: |
         git config user.name "GitHub Actions Bot"
@@ -107,7 +107,7 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: https://npm.pkg.github.com/
-        scope: '@OWNER'
+        scope: '@DanielContrerasPGNXT'
     - name: setup git config
       run: |
         git config user.name "GitHub Actions Bot"
@@ -115,6 +115,8 @@ jobs:
     - name: Release Node.js module
       run: |
         npm version ${{ github.ref_name }}
+        git add package*.json
+        git push origin HEAD:main --force
         npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
