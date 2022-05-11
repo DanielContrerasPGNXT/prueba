@@ -28,7 +28,6 @@ jobs:
         PREID: PR${{ github.event.number }}
       run: |
         echo $PREID
-        npm version prerelease --preid=$(echo $PREID)
 
   build:
     name: Build
