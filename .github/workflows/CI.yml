@@ -28,7 +28,6 @@ jobs:
         PREID: PR${{ github.event.number }}
       run: |
         echo $PREID
-        echo ${{ github.base_ref }}
 
   build:
     name: Build
