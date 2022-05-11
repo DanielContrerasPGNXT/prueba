@@ -56,7 +56,7 @@ jobs:
   prerelease:
     name: PreRelease
     runs-on: ubuntu-latest
-    if: github.base_ref == 'dev' || github.event_name != 'release'
+    if: github.event_name != 'release' || github.base_ref == 'dev'
     needs: build
     steps:
     - name: Checkout
@@ -97,7 +97,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: github.base_ref == 'main' || github.event_name == 'release'
+    if: github.event_name == 'release' || github.base_ref == 'main'
     needs: build
 
     steps:
