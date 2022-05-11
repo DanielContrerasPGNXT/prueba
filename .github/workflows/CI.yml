@@ -19,7 +19,6 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -28,6 +27,8 @@ jobs:
         PREID: PR${{ github.event.number }}
       run: |
         echo $PREID
+        echo ${{ github.base_ref }}
+        echo ${{ github.head_ref }}
 
   build:
     name: Build
@@ -96,7 +97,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.base_ref == 'main'
     needs: build
 
     steps:
