@@ -68,8 +68,8 @@ jobs:
         scope: '@OWNER'
     - name: setup git config
       run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
+        git config user.name "danielcontreraspgnxt"
+        git config user.email "daniel.contreras@servexternos.pagonxt.com"
     - name: PreRelease Node.js modul if PR
       if: github.event_name == 'pull_request'
       env:
@@ -110,11 +110,13 @@ jobs:
         scope: '@OWNER'
     - name: setup git config
       run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
+        git config user.name "danielcontreraspgnxt"
+        git config user.email "daniel.contreras@servexternos.pagonxt.com"
     - name: Release Node.js module
       run: |
         npm version ${{ github.ref_name }}
+        git add package*.json
+        git push origin HEAD:main --force
         npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
