@@ -3,12 +3,12 @@ name: Node.js CI
 on:
   push:
     branches:
-      - master
-      - develop
+      - main
+      - dev
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
-      - develop
+      - dev
   release:
     types:
       - created
@@ -20,21 +20,15 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-    env:
-      PREID: ${{ github.event.number }}_PR
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Setting up prerelease ID if PR
-      if: github.event_name != 'pull_request'
       env:
-        PREID: ${{ github.event.number }}
+        PREID: PR${{ github.event.number }}
       run: |
         echo $PREID
-    - name: Setting up prerelease ID if not PR
-      if: github.event_name != 'pull_request'
-      env:
-        PREID: dev
-      run: |
-        echo $PREID
+        npm version prerelease --preid=$(echo $PREID)
 
   build:
     name: Build
@@ -63,41 +57,42 @@ jobs:
   prerelease:
     name: PreRelease
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.base_ref == 'develop'
+    if: github.event_name == 'pull_request' || github.base_ref == 'dev'
     needs: build
     steps:
-    - name: Setting up prerelease ID if PR
-      if: github.event_name == 'pull_request'
-      env:
-        PREID: ${{ github.event.number }}_PR
-      run: |
-        echo $PREID
-    - name: Setting up prerelease ID if not PR
-      if: github.event_name != 'pull_request'
-      env:
-        PREID: dev
-      run: |
-        echo $PREID
     - name: Checkout
       uses: actions/checkout@v2
     - name: Setup Node.js 12.x
       uses: actions/setup-node@v3
       with:
         node-version: '12.x'
-        registry-url: https://npm.pkg.github.com/
-        scope: '@pagonxt'
+        registry-url: https://registry.npmjs.org/
     - name: setup git config
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: PreRelease Node.js module
+    - name: PreRelease Node.js modul if PR
+      if: github.event_name == 'pull_request'
+      env:
+        PREID: PR${{ github.event.number }}
+        NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
       run: |
-        npm version prerelease --preid=$PREID
+        echo $PREID
+        npm version prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish
+    - name: PreRelease Node.js modul if not PR
+      if: github.event_name != 'pull_request'
       env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PREID: dev
+        NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
+      run: |
+        echo $PREID
+        npm version prerelease --preid=$(echo $PREID)
+        git add package*.json
+        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
+        npm publish --access public
 
   release:
     name: Release
@@ -112,8 +107,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '12.x'
-        registry-url: https://npm.pkg.github.com/
-        scope: '@pagonxt'
+        registry-url: https://registry.npmjs.org/
     - name: setup git config
       run: |
         git config user.name "GitHub Actions Bot"
@@ -121,6 +115,6 @@ jobs:
     - name: Release Node.js module
       run: |
         npm version ${{ github.ref_name }}
-        npm publish
+        npm publish --access public
       env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
