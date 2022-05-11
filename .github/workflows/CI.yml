@@ -21,12 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Setting up prerelease ID if PR
       env:
         PREID: ${{ github.event.number }}_PR
       run: |
         echo $PREID
-        npm version prerelease --preid=${PREID}
+        npm version prerelease --preid=$(echo $PREID)
 
   build:
     name: Build
@@ -84,7 +86,7 @@ jobs:
         git config user.email "<>"
     - name: PreRelease Node.js module
       run: |
-        npm version prerelease --preid=$(echo ${PREID})
+        npm version prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish
