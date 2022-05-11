@@ -67,7 +67,6 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: https://npm.pkg.github.com/
-        scope: '@pagonxt'
     - name: setup git config
       run: |
         git config user.name "GitHub Actions Bot"
@@ -109,7 +108,6 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: https://npm.pkg.github.com/
-        scope: '@pagonxt'
     - name: setup git config
       run: |
         git config user.name "GitHub Actions Bot"
