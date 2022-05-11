@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -63,10 +63,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Node.js 12.x
+    - name: Setup Node.js 16.x
       uses: actions/setup-node@v3
       with:
-        node-version: '12.x'
+        node-version: '16.x'
         registry-url: https://npm.pkg.github.com/
         scope: '@DanielContrerasPGNXT'
     - name: setup git config
@@ -105,10 +105,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Node.js 12.x
+    - name: Setup Node.js 16.x
       uses: actions/setup-node@v3
       with:
-        node-version: '12.x'
+        node-version: '16.x'
         registry-url: https://npm.pkg.github.com/
         scope: '@DanielContrerasPGNXT'
     - name: setup git config
