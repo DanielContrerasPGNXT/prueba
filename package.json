@@ -1,6 +1,6 @@
 {
-  "name": "dcaprueba",
-  "version": "1.0.1-PR7.0",
+  "name": "@pagonxt/dcaprueba",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/DanielContrerasPGNXT/prueba"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

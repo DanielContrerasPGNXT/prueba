@@ -64,12 +64,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '12.x'
-        registry-url: https://registry.npmjs.org/
-        scope: '@OWNER'
+        registry-url: https://npm.pkg.github.com/
+        scope: '@pagonxt'
     - name: setup git config
       run: |
-        git config user.name "danielcontreraspgnxt"
-        git config user.email "daniel.contreras@servexternos.pagonxt.com"
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
     - name: PreRelease Node.js modul if PR
       if: github.event_name == 'pull_request'
       env:
@@ -106,12 +106,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '12.x'
-        registry-url: https://registry.npmjs.org/
-        scope: '@OWNER'
+        registry-url: https://npm.pkg.github.com/
+        scope: '@pagonxt'
     - name: setup git config
       run: |
-        git config user.name "danielcontreraspgnxt"
-        git config user.email "daniel.contreras@servexternos.pagonxt.com"
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
     - name: Release Node.js module
       run: |
         npm version ${{ github.ref_name }}
