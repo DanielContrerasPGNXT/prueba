@@ -20,21 +20,13 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-    env:
-      PREID: ${{ github.event.number }}_PR
     steps:
     - name: Setting up prerelease ID if PR
-      if: github.event_name != 'pull_request'
       env:
-        PREID: ${{ github.event.number }}
+        PREID: ${{ github.event.number }}_PR
       run: |
         echo $PREID
-    - name: Setting up prerelease ID if not PR
-      if: github.event_name != 'pull_request'
-      env:
-        PREID: dev
-      run: |
-        echo $PREID
+        npm version prerelease --preid=$(echo $PREID)
 
   build:
     name: Build
