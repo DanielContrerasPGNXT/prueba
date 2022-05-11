@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Setting up prerelease ID if PR
       env:
-        PREID: ${{ github.event.number }}PR
+        PREID: PR${{ github.event.number }}
       run: |
         echo $PREID
         npm version prerelease --preid=$(echo $PREID)
@@ -75,7 +75,7 @@ jobs:
     - name: PreRelease Node.js modul if PR
       if: github.event_name == 'pull_request'
       env:
-        PREID: ${{ github.event.number }}PR
+        PREID: PR${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
       run: |
         echo $PREID
