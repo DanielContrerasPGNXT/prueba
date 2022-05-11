@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "1.1.2-dev.2",
+  "version": "1.1.2-dev.3",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -18,7 +18,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "DanielContrerasPGNXT",
   "license": "ISC",
   "devDependencies": {}
 }
