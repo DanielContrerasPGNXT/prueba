@@ -92,7 +92,7 @@ jobs:
         npm version prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
-        npm publish
+        npm publish --access public
 
   release:
     name: Release
@@ -115,6 +115,6 @@ jobs:
     - name: Release Node.js module
       run: |
         npm version ${{ github.ref_name }}
-        npm publish
+        npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
