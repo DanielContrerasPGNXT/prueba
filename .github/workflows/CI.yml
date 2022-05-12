@@ -79,7 +79,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
         echo $PREID
-        npm version prerelease --preid=$(echo $PREID)
+        npx semantic-release --branches ${{ github.ref }}
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish --access public
@@ -90,7 +90,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
       run: |
         echo $PREID
-        npm version prerelease --preid=$(echo $PREID)
+        npx semantic-release --branches dev
         git add package*.json
         git push origin HEAD:dev --force
         npm publish --access public

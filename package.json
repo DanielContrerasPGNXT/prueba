@@ -11,9 +11,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "release": {
-    "branches": [
-      "main"
-    ]
+    "branches": [ "main" ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
