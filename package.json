@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "2.0.1-PR34.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -12,101 +12,20 @@
   },
   "release": {
     "branches": [
-      "main",
-      "dev"
+      "master",
+      {
+        "name": "dev",
+        "channel": "next",
+        "prerelease": true
+      },
+      {
+        "name": "refs/pull/*",
+        "channel": "PR",
+        "prerelease": true
+      }
     ],
     "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "releaseRules": [
-            {
-              "breaking": true,
-              "release": "major"
-            },
-            {
-              "revert": true,
-              "release": "patch"
-            },
-            {
-              "type": "feat",
-              "release": "minor"
-            },
-            {
-              "type": "fix",
-              "release": "patch"
-            },
-            {
-              "type": "perf",
-              "release": "patch"
-            },
-            {
-              "emoji": ":racehorse:",
-              "release": "patch"
-            },
-            {
-              "emoji": ":bug:",
-              "release": "patch"
-            },
-            {
-              "emoji": ":penguin:",
-              "release": "patch"
-            },
-            {
-              "emoji": ":apple:",
-              "release": "patch"
-            },
-            {
-              "emoji": ":checkered_flag:",
-              "release": "patch"
-            },
-            {
-              "tag": "BUGFIX",
-              "release": "patch"
-            },
-            {
-              "tag": "FEATURE",
-              "release": "minor"
-            },
-            {
-              "tag": "SECURITY",
-              "release": "patch"
-            },
-            {
-              "tag": "Breaking",
-              "release": "major"
-            },
-            {
-              "tag": "Fix",
-              "release": "patch"
-            },
-            {
-              "tag": "Update",
-              "release": "minor"
-            },
-            {
-              "tag": "New",
-              "release": "minor"
-            },
-            {
-              "component": "perf",
-              "release": "patch"
-            },
-            {
-              "component": "deps",
-              "release": "patch"
-            },
-            {
-              "type": "FEAT",
-              "release": "minor"
-            },
-            {
-              "type": "FIX",
-              "release": "patch"
-            }
-          ]
-        }
-      ],
+      "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
       "@semantic-release/github"
