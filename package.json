@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "0.0.0",
+  "version": "0.0.1-PR.0",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,11 @@
   "release": {
     "branches": [
       "main",
-      { "name": "dev", "channel": "next", "prerelease": true }
+      {
+        "name": "dev",
+        "channel": "next",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
