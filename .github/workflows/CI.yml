@@ -27,14 +27,20 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+        PREID: ${{ github.event.number }}
       run: |
         echo 1-${{ github.event_name }}
         echo 2-${{ github.ref }}
         echo 3-${{ github.event.number }}
+        echo 4-$PREID
+        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
+        VERSION=$(cat .VERSION)
+        echo $VERSION
 
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     strategy:
       matrix:
         node-version: [16.x]
@@ -77,12 +83,13 @@ jobs:
       if: github.event_name == 'pull_request'
       env:
         PREID: ${{ github.event.number }}
-        VERSION: npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]"
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npm version $(echo $VERSION)PR$(echo $PREID)
+        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
+        VERSION=$(cat .VERSION)PR$(echo $PREID)
+        npm version $(echo $VERSION)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish --access public
