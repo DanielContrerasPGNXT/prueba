@@ -80,7 +80,10 @@ jobs:
       run: |
         echo $PREID
         npx semantic-release --branches ${{ github.ref }}
-
+        echo $RELEASE_VERSION
+        echo $RELEASE_MAJOR
+        echo $RELEASE_MINOR
+        echo $RELEASE_PATCH
         npm publish --access public
     - name: PreRelease Node.js module in dev
       if: github.event_name != 'pull_request'
@@ -90,7 +93,6 @@ jobs:
       run: |
         echo $PREID
         npx semantic-release --branches dev
-
         npm publish --access public
 
   release:
