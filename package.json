@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "1.1.2-PR25.0",
+  "version": "1.1.2-PR26.0",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -12,7 +12,8 @@
   },
   "release": {
     "branches": [
-      "main"
+      "main",
+      "dev"
     ],
     "plugins": [
       [
