@@ -12,10 +12,15 @@
   },
   "release": {
     "branches": [
-      "main",
+      "master",
       {
         "name": "dev",
         "channel": "next",
+        "prerelease": true
+      },
+      {
+        "name": "readme",
+        "channel": "test",
         "prerelease": true
       }
     ],
