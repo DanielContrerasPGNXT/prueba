@@ -10,18 +10,12 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "prerelease":{
-    "publish-only": true,
-    "branches": [ "dev", "*" ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ]
-  },
   "release": {
-    "branches": [ "main" ],
+    "branches": [
+      "main",
+      { "name": "dev", "channel": "next", "prerelease": true },
+      { "name": "*", "channel": "PR", "prerelease": true }
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
