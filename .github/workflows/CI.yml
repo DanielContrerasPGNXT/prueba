@@ -76,15 +76,12 @@ jobs:
     - name: PreRelease Node.js module in PR
       if: github.event_name == 'pull_request'
       env:
-        PREID: PR${{ github.event.number }}
         REF: ${{ github.ref }}
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        echo $REF
-        npx semantic-release --dry-run --branches main,dev,$(echo $REF) --no-ci
-        npm version prerelease --preid=$(echo $PREID)
+        npm version $(echo npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]") prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish --access public
