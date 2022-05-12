@@ -81,7 +81,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npx semantic-release --dry-run --branches main,dev,readme --no-ci
+        npx semantic-release --dry-run --branches main,dev,${{ github.ref }} --no-ci
         npm version prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force

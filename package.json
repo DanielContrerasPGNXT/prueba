@@ -19,8 +19,8 @@
         "prerelease": true
       },
       {
-        "name": "readme",
-        "channel": "test",
+        "name": "refs/pull/*",
+        "channel": "PR",
         "prerelease": true
       }
     ],
