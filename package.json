@@ -12,7 +12,7 @@
   },
   "release": {
     "branches": [
-      "master",
+      "main",
       {
         "name": "dev",
         "channel": "next",
