@@ -80,8 +80,7 @@ jobs:
       run: |
         echo $PREID
         npx semantic-release --branches ${{ github.ref }}
-        git add package*.json
-        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
+
         npm publish --access public
     - name: PreRelease Node.js module in dev
       if: github.event_name != 'pull_request'
@@ -91,8 +90,7 @@ jobs:
       run: |
         echo $PREID
         npx semantic-release --branches dev
-        git add package*.json
-        git push origin HEAD:dev --force
+
         npm publish --access public
 
   release:
@@ -117,8 +115,7 @@ jobs:
     - name: Release Node.js module
       run: |
         npx semantic-release
-        git add package*.json
-        git push origin HEAD:main --force
+
         npm publish --access public
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}

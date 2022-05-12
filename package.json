@@ -11,7 +11,16 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "release": {
-    "branches": [ "main" ]
+    "branches": [ "main" ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [ "@semantic-release/exec", {
+        "prepareCmd": "set-version ${nextRelease.version}",
+        "publishCmd": "publish-package"
+      } ]
+    ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
