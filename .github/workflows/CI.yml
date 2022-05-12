@@ -86,7 +86,7 @@ jobs:
       run: |
         npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
         VERSION=$(cat .VERSION)PR$(echo $PREID)
-        npm unpublish $(echo $VERSION)
+        npm unpublish @DanielContrerasPGNXT/dcaprueba@$(echo $VERSION)
         npm version $(echo $VERSION)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
