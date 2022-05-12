@@ -90,9 +90,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{secrets.PRUEBA_TOKEN}}
       run: |
         echo $PREID
-        npm version prerelease --preid=$(echo $PREID)
-        git add package*.json
-        git push origin HEAD:dev --force
+        npx semantic-release --branches dev
         npm publish --access public
 
   release:
@@ -117,8 +115,7 @@ jobs:
     - name: Release Node.js module
       run: |
         npx semantic-release
-        git add package*.json
-        git push origin HEAD:main --force
+
         npm publish --access public
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}

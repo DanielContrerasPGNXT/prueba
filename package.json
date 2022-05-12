@@ -13,6 +13,35 @@
   "release": {
     "branches": [
       "main"
+    ],
+    "plugins": [
+      ["@semantic-release/commit-analyzer", {
+        "releaseRules": [
+          {"breaking": true, "release": "major"},
+          {"revert": true, "release": "patch"},
+          {"type": "feat", "release": "minor"},
+          {"type": "fix", "release": "patch"},
+          {"type": "perf", "release": "patch"},
+          {"emoji": ":racehorse:", "release": "patch"},
+          {"emoji": ":bug:", "release": "patch"},
+          {"emoji": ":penguin:", "release": "patch"},
+          {"emoji": ":apple:", "release": "patch"},
+          {"emoji": ":checkered_flag:", "release": "patch"},
+          {"tag": "BUGFIX", "release": "patch"},
+          {"tag": "FEATURE", "release": "minor"},
+          {"tag": "SECURITY", "release": "patch"},
+          {"tag": "Breaking", "release": "major"},
+          {"tag": "Fix", "release": "patch"},
+          {"tag": "Update", "release": "minor"},
+          {"tag": "New", "release": "minor"},
+          {"component": "perf", "release": "patch"},
+          {"component": "deps", "release": "patch"},
+          {"type": "FEAT", "release": "minor"},
+          {"type": "FIX", "release": "patch"}
+        ]
+      }],
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
     ]
   },
   "scripts": {
@@ -20,5 +49,9 @@
   },
   "author": "DanielContrerasPGNXT",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/release-notes-generator": "^10.0.3"
+  }
 }
