@@ -78,7 +78,7 @@ jobs:
         PREID: PR${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npm version --allow-same-version prerelease --preid=$(echo $PREID)
+        npm version prerelease --preid=$(echo $PREID)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         npm publish --access public
