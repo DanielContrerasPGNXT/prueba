@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "0.0.0-ONdevAT20220512142503",
+  "version": "2.0.0-PR40AT20220512142623",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -16,11 +16,6 @@
       {
         "name": "dev",
         "channel": "next",
-        "prerelease": true
-      },
-      {
-        "name": "refs/pull/*",
-        "channel": "PR",
         "prerelease": true
       }
     ],
