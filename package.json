@@ -11,15 +11,20 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "release": {
-    "branches": [ "main" ],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/github",
-      [ "@semantic-release/exec", {
-        "prepareCmd": "set-version ${nextRelease.version}",
-        "publishCmd": "publish-package"
-      } ]
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "set-version ${nextRelease.version}",
+          "publishCmd": "publish-package"
+        }
+      ]
     ]
   },
   "scripts": {
@@ -27,5 +32,10 @@
   },
   "author": "DanielContrerasPGNXT",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/release-notes-generator": "^10.0.3"
+  }
 }
