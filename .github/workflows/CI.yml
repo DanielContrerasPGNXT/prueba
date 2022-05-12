@@ -97,7 +97,7 @@ jobs:
         VERSION=$(cat .VERSION)ONdevAT$(date +'%Y%m%d%H%M%S')
         npm version $(echo $VERSION)
         git add package*.json
-        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
+        git push origin HEAD:dev --force
         npm publish --access public
 
   release:
