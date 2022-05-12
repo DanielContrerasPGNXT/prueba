@@ -52,7 +52,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Clean install Node.js dependencies
-      run: npm ci
+      run: npm i
 
   prerelease:
     name: PreRelease
@@ -117,7 +117,6 @@ jobs:
     - name: Release Node.js module
       run: |
         npx semantic-release
-
         npm publish --access public
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
