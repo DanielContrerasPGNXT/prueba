@@ -30,7 +30,6 @@ jobs:
         echo 1-${{ github.event_name }}
         echo 2-${{ github.ref }}
         echo 3-${{ github.event.number }}
-        npx semantic-release
 
   build:
     name: Build
