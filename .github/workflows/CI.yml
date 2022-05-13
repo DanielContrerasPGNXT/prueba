@@ -89,7 +89,10 @@ jobs:
         npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
         VERSION=$(cat .VERSION)PR$(echo $PRID)
         PACKAGE=@danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
-        npm unpublish $(echo $PACKAGE)  --force
+        echo //npm.pkg.github.com/:_authToken=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 >> ./.npmrc
+        echo @pagonxt:registry=https://npm.pkg.github.com >> ./.npmrc
+        echo @danielcontreraspgnxt:registry=https://npm.pkg.github.com >> ./.npmrc
+        npm unpublish $(echo $PACKAGE) --force
         npm version $(echo $VERSION)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
