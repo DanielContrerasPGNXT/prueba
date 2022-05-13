@@ -81,9 +81,13 @@ jobs:
       env:
         PRID: ${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      with:
+        node-version: '16.x'
+        registry-url: https://npm.pkg.github.com/
+        scope: '@DanielContrerasPGNXT'
       run: |
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)PR$(echo $PRID)AT$(date +'%Y%m%d%H%M%S')
+        VERSION=$(cat .VERSION)PR$(echo $PRID)
+        npm unpublish @danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
         npm version $(echo $VERSION)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
