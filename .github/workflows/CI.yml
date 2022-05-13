@@ -80,7 +80,7 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: PreRelease Node.js module in PR
+    - name: Remove Previous prerelease on PR
       if: github.event_name == 'pull_request'
       env:
         PRID: ${{ github.event.number }}
@@ -89,10 +89,15 @@ jobs:
         npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
         VERSION=$(cat .VERSION)PR$(echo $PRID)
         PACKAGE=@danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
-        echo //npm.pkg.github.com/:_authToken=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 >> ./.npmrc
-        echo @pagonxt:registry=https://npm.pkg.github.com >> ./.npmrc
-        echo @danielcontreraspgnxt:registry=https://npm.pkg.github.com >> ./.npmrc
         npm unpublish $(echo $PACKAGE) --force
+    - name: PreRelease Node.js module in PR
+      if: github.event_name == 'pull_request'
+      env:
+        PRID: ${{ github.event.number }}
+        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      run: |
+        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
+        VERSION=$(cat .VERSION)PR$(echo $PRID)
         npm version $(echo $VERSION)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
