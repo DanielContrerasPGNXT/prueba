@@ -1,2 +1,2 @@
 
-New breaking version
+New major version
