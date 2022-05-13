@@ -111,12 +111,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)ONdevAT$(date +'%Y%m%d%H%M%S')
-        npm version $(echo $VERSION)
-        git add package*.json
-        git push origin HEAD:dev --force
-        npm publish --access public
+        npx semantic-release
 
   release:
     name: Release
