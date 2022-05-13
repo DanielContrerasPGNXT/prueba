@@ -92,7 +92,7 @@ jobs:
         PACKAGE=@danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
         npm unpublish $(echo $PACKAGE) --force
     - name: PreRelease Node.js module in PR
-      if: github.event_name == 'pull_request'
+      if: failure() || github.event_name == 'pull_request'
       env:
         PRID: ${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
