@@ -82,6 +82,7 @@ jobs:
         PRID: ${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
+        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
         VERSION=$(cat .VERSION)PR$(echo $PRID)
         npm unpublish @danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
         npm version $(echo $VERSION)
