@@ -81,10 +81,6 @@ jobs:
       env:
         PRID: ${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-      with:
-        node-version: '16.x'
-        registry-url: https://npm.pkg.github.com/
-        scope: '@DanielContrerasPGNXT'
       run: |
         VERSION=$(cat .VERSION)PR$(echo $PRID)
         npm unpublish @danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
