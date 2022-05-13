@@ -111,7 +111,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npx semantic-release
+        npx -p @semantic-release/changelog -p semantic-release semantic-release
 
   release:
     name: Release
