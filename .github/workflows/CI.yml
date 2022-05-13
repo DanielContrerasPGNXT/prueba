@@ -109,6 +109,8 @@ jobs:
     - name: PreRelease Node.js module in dev
       if: github.event_name != 'pull_request'
       env:
+        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
         npx -p @semantic-release/changelog -p semantic-release semantic-release
