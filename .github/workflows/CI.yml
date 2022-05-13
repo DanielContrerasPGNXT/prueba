@@ -82,11 +82,9 @@ jobs:
         PRID: ${{ github.event.number }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        echo @DanielContrerasPGNXT:registry=https://npm.pkg.github.com >> ./.npmrc
-        echo //npm.pkg.github.com/:_authToken=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 >> ./.npmrc
         npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
         VERSION=$(cat .VERSION)PR$(echo $PRID)
-        npm unpublish @danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
+        npm unpublish dcaprueba@$(echo $VERSION)
         npm version $(echo $VERSION)
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
