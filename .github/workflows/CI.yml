@@ -61,7 +61,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Clean install Node.js dependencies
       run: |
-        echo "registry=https://npm.pkg.github.com/:_authToken=${{ secrets.PRUEBA_TOKEN }}" > .npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.PRUEBA_TOKEN }}" >> .npmrc
+        echo "@DanielContrerasPGNXT:registry=https://npm.pkg.github.com" >> .npmrc
         npm i
 
   prerelease:
