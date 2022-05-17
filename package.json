@@ -17,6 +17,11 @@
         "name": "dev",
         "channel": "prerelease",
         "prerelease": true
+      },
+      {
+        "name": "refs/pull/*/merge",
+        "channel": "prerelease",
+        "prerelease": true
       }
     ],
     "plugins": [
