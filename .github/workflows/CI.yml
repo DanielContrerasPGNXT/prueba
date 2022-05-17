@@ -91,7 +91,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npx -p @semantic-release/changelog -p semantic-release semantic-release
+        npx -p @semantic-release/changelog -p @semantic-release/git -p semantic-release semantic-release
 
   prerelease:
     name: Pre Release
