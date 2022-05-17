@@ -10,9 +10,6 @@ on:
     types: [opened, edited, synchronize, reopened]
     branches:
       - dev
-  release:
-    types:
-      - created
   workflow_dispatch:
 
 jobs:
@@ -104,7 +101,7 @@ jobs:
 
     steps:
     - name: Building Prerelease
-      run: echo 'Building Prerelease'
+      run: echo 'Builded Prerelease'
 
   release:
     name: Release
@@ -114,4 +111,4 @@ jobs:
 
     steps:
     - name: Building Release
-      run: echo 'Building Release'
+      run: echo 'Builded Release'
