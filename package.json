@@ -19,8 +19,8 @@
         "prerelease": true
       },
       {
-        "name": "refs/pull/48/merge",
-        "channel": "prerelease",
+        "name": "refs/pull/{+([1-9])}/merge",
+        "channel": "PR",
         "prerelease": true
       }
     ],
