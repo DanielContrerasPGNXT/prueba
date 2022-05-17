@@ -1,3 +1,10 @@
+# [4.2.0-feat-prerelease.2](https://github.com/DanielContrerasPGNXT/prueba/compare/4.2.0-feat-prerelease.1...4.2.0-feat-prerelease.2) (2022-05-17)
+
+
+### Features
+
+* **integration:** cleaned CI file ([9f32e11](https://github.com/DanielContrerasPGNXT/prueba/commit/9f32e11891f2911cfc7dd6f05eba2447d1e1a76b))
+
 # [4.2.0-feat-prerelease.1](https://github.com/DanielContrerasPGNXT/prueba/compare/4.1.0...4.2.0-feat-prerelease.1) (2022-05-17)
 
 
