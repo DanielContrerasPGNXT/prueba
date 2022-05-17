@@ -69,6 +69,8 @@ jobs:
         git push origin HEAD:beta --force
     - name: Launching Beta PreRelease
       if: github.event_name == 'pull_request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       uses: benc-uk/workflow-dispatch@v1
       with:
         token: ${{ secrets.PRUEBA_TOKEN }}
