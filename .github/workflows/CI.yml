@@ -101,7 +101,14 @@ jobs:
 
     steps:
     - name: Building Prerelease
-      run: echo 'Builded Prerelease'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      run: |
+        echo 'Builded Prerelease'
+        PRERELEASE=git describe --tags `git rev-list --tags --max-count=1` | cut -c 2-
+        npm version $(echo $PRERELEASE) --no-git-tag-version
+        git add package*.json
+        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
 
   release:
     name: Release
