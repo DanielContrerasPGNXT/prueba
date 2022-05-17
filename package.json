@@ -20,7 +20,7 @@
       },
       {
         "name": "beta",
-        "channel": "PR",
+        "channel": "beta",
         "prerelease": true
       }
     ],
@@ -30,7 +30,7 @@
       [
         "@semantic-release/changelog",
         {
-          "changelogFile": "docs/CHANGELOG.md"
+          "changelogFile": "CHANGELOG.md"
         }
       ],
       "@semantic-release/npm",

@@ -17,35 +17,14 @@ on:
 
 jobs:
 
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        PREID: $(date +'%Y-%m-%d')
-      run: |
-        echo 1-${{ github.event_name }}
-        echo 2-${{ github.ref }}
-        echo 3-${{ github.event.number }}
-        echo 4-$(date +'%Y%m%dT%H:%M:%S')
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)PR$(echo $PRID)
-        PACKAGE=@danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
-        echo 5-$PACKAGE
-
   build:
     name: Build
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+    if: github.event_name != 'pull_request'
     strategy:
       matrix:
         node-version: [16.x]
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -64,47 +43,36 @@ jobs:
       run: |
         npm ci
 
-  prerelease:
-    name: PreRelease
+  beta:
+    name: Beta
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/dev'
-    needs: build
+    if: github.event_name == 'pull_request'
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Node.js 16.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        registry-url: https://npm.pkg.github.com/
-        scope: '@DanielContrerasPGNXT'
     - name: Setup git config
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: PreRelease Node.js module in PR
-      if: github.event_name == 'pull_request'
+    - name: Preparing Beta PreRelease
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
         git push origin HEAD:beta --force
-        npx -p @semantic-release/changelog -p semantic-release semantic-release
-    - name: PreRelease Node.js module in dev
-      if: github.event_name != 'pull_request'
+    - name: Launching Beta PreRelease
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-      run: |
-        npx -p @semantic-release/changelog -p semantic-release semantic-release
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        token: ${{ secrets.PRUEBA_TOKEN }}
+        ref: 'refs/heads/beta'
+        workflow: Node.js CI
 
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     needs: build
 
     steps:
@@ -121,9 +89,9 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
     - name: Release Node.js module
-      run: |
-        npx -p @semantic-release/changelog -p semantic-release semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      run: |
+        npx -p @semantic-release/changelog -p semantic-release semantic-release
