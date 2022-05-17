@@ -1,3 +1,10 @@
+# [4.1.0-dev.3](https://github.com/DanielContrerasPGNXT/prueba/compare/v4.1.0-dev.2...v4.1.0-dev.3) (2022-05-17)
+
+
+### Bug Fixes
+
+* release beta 5 ([7048bc3](https://github.com/DanielContrerasPGNXT/prueba/commit/7048bc3a059a36d33ae5d0787ff882310438542b))
+
 # [4.1.0-dev.2](https://github.com/DanielContrerasPGNXT/prueba/compare/v4.1.0-dev.1...v4.1.0-dev.2) (2022-05-17)
 
 
