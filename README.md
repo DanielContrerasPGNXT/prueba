@@ -1,2 +1,2 @@
 
-New fix beta version seq
+New fix beta version
