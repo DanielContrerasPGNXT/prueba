@@ -15,12 +15,10 @@
       "main",
       {
         "name": "dev",
-        "channel": "prerelease-dev",
         "prerelease": true
       },
       {
         "name": "beta",
-        "channel": "pr-beta",
         "prerelease": true
       }
     ],
