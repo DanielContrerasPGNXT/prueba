@@ -20,11 +20,6 @@
         "prerelease": true
       },
       {
-        "name": "beta",
-        "channel": "prerelease",
-        "prerelease": true
-      },
-      {
         "name": "fix-*",
         "prerelease": true
       },

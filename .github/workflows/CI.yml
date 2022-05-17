@@ -5,13 +5,8 @@ on:
     branches:
       - main
       - dev
-      - beta
       - fix-*
       - feat-*
-  pull_request:
-    types: [opened, edited, synchronize, reopened]
-    branches:
-      - dev
   workflow_dispatch:
 
 jobs:
@@ -19,7 +14,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
     strategy:
       matrix:
         node-version: [16.x]
@@ -41,37 +35,6 @@ jobs:
     - name: Clean install Node.js dependencies
       run: |
         npm ci
-
-  beta:
-    name: Beta
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    if: github.event_name == 'pull_request'
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup git config
-      run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
-    - name: Preparing Beta PreRelease
-      env:
-        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-      run: |
-        git fetch --all
-        git checkout origin/beta package*.json
-        git add package*.json
-        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
-        git push origin HEAD:beta --force
-    - name: Launching Beta PreRelease
-      env:
-        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-      uses: benc-uk/workflow-dispatch@v1
-      with:
-        token: ${{ secrets.PRUEBA_TOKEN }}
-        ref: 'refs/heads/beta'
-        workflow: Node.js CI
 
   build-release:
     name: Build release
@@ -102,12 +65,11 @@ jobs:
   prerelease:
     name: Pre Release
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
     needs: build-release
 
     steps:
     - name: Building Prerelease
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
         echo 'Builded Prerelease'
 
