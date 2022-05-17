@@ -57,7 +57,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        git checkout origin HEAD:beta package*.json
+        git checkout origin/beta package*.json
         git add package*.json
         git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         git push origin HEAD:beta --force
