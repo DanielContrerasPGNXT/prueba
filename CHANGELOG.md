@@ -1,4 +1,4 @@
-# [4.1.0-dev.1](https://github.com/DanielContrerasPGNXT/prueba/compare/v4.0.1...4.1.0-dev.1) (2022-05-17)
+# [4.1.0](https://github.com/DanielContrerasPGNXT/prueba/compare/v4.0.1...4.1.0) (2022-05-17)
 
 
 ### Bug Fixes
