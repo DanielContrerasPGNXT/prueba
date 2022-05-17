@@ -19,7 +19,7 @@
         "prerelease": true
       },
       {
-        "name": "refs/pull/v+([0-9])/merge",
+        "name": "refs/pull/+({+([0-9]))/merge",
         "channel": "prerelease",
         "prerelease": true
       }
