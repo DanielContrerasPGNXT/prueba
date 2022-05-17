@@ -19,7 +19,7 @@
         "prerelease": true
       },
       {
-        "name": "refs/pull/*/merge",
+        "name": "refs/pull/x/merge",
         "channel": "prerelease",
         "prerelease": true
       }
