@@ -6,6 +6,8 @@ on:
       - main
       - dev
       - beta
+  repository_dispatch:
+    types: [beta]
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
@@ -83,16 +85,19 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: PreRelease Node.js module in PR
+    - name: Preparing Beta PreRelease
       if: github.event_name == 'pull_request'
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
         git push origin HEAD:beta --force
-        npx -p @semantic-release/changelog -p semantic-release semantic-release
-    - name: PreRelease Node.js module in dev
+    - name: Launching Beta PreRelease
+      if: github.event_name == 'pull_request'
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{ secrets.PRUEBA_TOKEN }}
+        event-type: beta
+    - name: PreRelease Node.js module
       if: github.event_name != 'pull_request'
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
