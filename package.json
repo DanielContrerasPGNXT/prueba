@@ -25,7 +25,11 @@
         "prerelease": true
       },
       {
-        "name": "readme",
+        "name": "fix-*",
+        "prerelease": true
+      },
+      {
+        "name": "feat-*",
         "prerelease": true
       }
     ],
