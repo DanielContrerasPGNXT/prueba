@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - beta
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
@@ -61,9 +62,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Clean install Node.js dependencies
       run: |
-        echo "//npm.pkg.github.com/:_authToken=${{ secrets.PRUEBA_TOKEN }}" >> .npmrc
-        echo "@DanielContrerasPGNXT:registry=https://npm.pkg.github.com" >> .npmrc
-        npm i
+        npm ci
 
   prerelease:
     name: PreRelease
@@ -84,28 +83,15 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: Remove Previous prerelease on PR
+    - name: PreRelease Node.js module in PR
       if: github.event_name == 'pull_request'
       env:
-        PRID: ${{ github.event.number }}
+        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)PR$(echo $PRID)
-        PACKAGE=@danielcontreraspgnxt/dcaprueba@$(echo $VERSION)
-        npm unpublish $(echo $PACKAGE) --force
-    - name: PreRelease Node.js module in PR
-      if: failure() || github.event_name == 'pull_request'
-      env:
-        PRID: ${{ github.event.number }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-      run: |
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)PR$(echo $PRID)
-        npm version $(echo $VERSION)
-        git add package*.json
-        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
-        npm publish --access public
+        git push origin HEAD:beta --force
+        npx -p @semantic-release/changelog -p semantic-release semantic-release
     - name: PreRelease Node.js module in dev
       if: github.event_name != 'pull_request'
       env:
@@ -136,7 +122,7 @@ jobs:
         git config user.email "<>"
     - name: Release Node.js module
       run: |
-        npx semantic-release
+        npx -p @semantic-release/changelog -p semantic-release semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
