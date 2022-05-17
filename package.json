@@ -20,7 +20,7 @@
       },
       {
         "name": "beta",
-        "channel": "beta",
+        "channel": "pr-beta",
         "prerelease": true
       }
     ],
