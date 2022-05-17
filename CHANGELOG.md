@@ -1,3 +1,15 @@
+# [4.1.0-dev.4](https://github.com/DanielContrerasPGNXT/prueba/compare/v4.1.0-dev.3...v4.1.0-dev.4) (2022-05-17)
+
+
+### Bug Fixes
+
+* release beta 6 ([ae0257e](https://github.com/DanielContrerasPGNXT/prueba/commit/ae0257e424c61e7e0001cc2e2fbd83b4819a7900))
+* release beta 7 ([23f32a7](https://github.com/DanielContrerasPGNXT/prueba/commit/23f32a7bec1d38df934906f2a22989ac6d1ee1f9))
+* release beta 7 ([5e2bf5c](https://github.com/DanielContrerasPGNXT/prueba/commit/5e2bf5c2c66c45c4837ebd693a24a900a83704ea))
+* release beta 7 ([94b0135](https://github.com/DanielContrerasPGNXT/prueba/commit/94b0135fe6fd90d15dd4c4692dc7683a943cc394))
+* release beta 8 ([cff0015](https://github.com/DanielContrerasPGNXT/prueba/commit/cff00158c66511d618375bbf2d5fde19d119d2b9))
+* release beta 8 ([629d94d](https://github.com/DanielContrerasPGNXT/prueba/commit/629d94d852ae9535b0e8fb8b337ae1c3c12ab57c))
+
 # [4.1.0-dev.3](https://github.com/DanielContrerasPGNXT/prueba/compare/v4.1.0-dev.2...v4.1.0-dev.3) (2022-05-17)
 
 
