@@ -17,10 +17,6 @@
         "name": "dev",
         "channel": "prerelease",
         "prerelease": true
-      }, {
-        "name": "refs/pull/*",
-        "channel": "prerelease",
-        "prerelease": true
       }
     ],
     "plugins": [
