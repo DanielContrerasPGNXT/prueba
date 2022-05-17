@@ -19,7 +19,7 @@
         "prerelease": true
       },
       {
-        "name": "refs/pull/([1-9])+/merge",
+        "name": "readme",
         "channel": "PR",
         "prerelease": true
       }
