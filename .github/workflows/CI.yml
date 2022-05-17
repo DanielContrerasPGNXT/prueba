@@ -97,8 +97,9 @@ jobs:
         npx -p @semantic-release/changelog -p semantic-release semantic-release
 
   prerelease:
-    name: Release
+    name: Pre Release
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/dev'
     needs: build-release
 
     steps:
@@ -108,8 +109,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     needs: build-release
 
     steps:
-    - name: Building Prerelease
+    - name: Building Release
       run: echo 'Building Release'
