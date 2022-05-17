@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "4.1.0-dev.4",
+  "version": "4.1.0-dev.2",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -11,16 +11,21 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "release": {
+    "tagFormat": "${version}",
     "branches": [
       "main",
       {
         "name": "dev",
-        "channel": "dev-prerelease.x",
+        "channel": "prerelease",
         "prerelease": true
       },
       {
         "name": "beta",
-        "channel": "pr-beta.x",
+        "channel": "prerelease",
+        "prerelease": true
+      },
+      {
+        "name": "readme",
         "prerelease": true
       }
     ],

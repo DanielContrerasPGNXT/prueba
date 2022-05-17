@@ -100,7 +100,7 @@ jobs:
   prerelease:
     name: Pre Release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/readme'
     needs: build-release
 
     steps:
