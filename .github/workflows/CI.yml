@@ -42,7 +42,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     strategy:
       matrix:
         node-version: [16.x]
@@ -68,7 +68,7 @@ jobs:
     name: PreRelease
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/dev'
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/beta'
     needs: build
     steps:
     - name: Checkout
