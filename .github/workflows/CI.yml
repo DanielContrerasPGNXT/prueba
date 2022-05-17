@@ -57,6 +57,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
+        git fetch --all
+        git checkout origin/beta package*.json
+        git add package*.json
+        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
         git push origin HEAD:beta --force
     - name: Launching Beta PreRelease
       env:
@@ -96,12 +100,15 @@ jobs:
   prerelease:
     name: Pre Release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/readme'
     needs: build-release
 
     steps:
     - name: Building Prerelease
-      run: echo 'Builded Prerelease'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      run: |
+        echo 'Builded Prerelease'
 
   release:
     name: Release

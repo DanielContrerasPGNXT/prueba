@@ -11,6 +11,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "release": {
+    "tagFormat": "${version}",
     "branches": [
       "main",
       {
@@ -20,7 +21,11 @@
       },
       {
         "name": "beta",
-        "channel": "beta",
+        "channel": "prerelease",
+        "prerelease": true
+      },
+      {
+        "name": "readme",
         "prerelease": true
       }
     ],
