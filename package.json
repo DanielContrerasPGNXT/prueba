@@ -15,12 +15,12 @@
       "main",
       {
         "name": "dev",
-        "channel": "next",
+        "channel": "dev-prerelease.x",
         "prerelease": true
       },
       {
         "name": "beta",
-        "channel": "next",
+        "channel": "pr-beta.x",
         "prerelease": true
       }
     ],
