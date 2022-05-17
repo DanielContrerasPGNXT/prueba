@@ -1,6 +1,6 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "4.1.0",
+  "version": "4.2.0-dev.1",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -20,12 +20,11 @@
         "prerelease": true
       },
       {
-        "name": "beta",
-        "channel": "prerelease",
+        "name": "fix-*",
         "prerelease": true
       },
       {
-        "name": "readme",
+        "name": "feat-*",
         "prerelease": true
       }
     ],
