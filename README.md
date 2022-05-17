@@ -1,2 +1,2 @@
 
-New feat beta version 2
+New feat beta version 3
