@@ -5,42 +5,23 @@ on:
     branches:
       - main
       - dev
+      - beta
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
       - dev
-  release:
-    types:
-      - created
   workflow_dispatch:
 
 jobs:
 
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        PREID: $(date +'%Y-%m-%d')
-      run: |
-        echo 1-${{ github.event_name }}
-        echo 2-${{ github.ref }}
-        echo 3-${{ github.event.number }}
-        echo 4-$(date +'%Y%m%dT%H:%M:%S')
-
   build:
     name: Build
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+    if: github.event_name != 'pull_request'
     strategy:
       matrix:
         node-version: [16.x]
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -56,54 +37,39 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Clean install Node.js dependencies
-      run: npm i
+      run: |
+        npm ci
 
-  prerelease:
-    name: PreRelease
+  beta:
+    name: Beta
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/dev'
-    needs: build
+    continue-on-error: true
+    if: github.event_name == 'pull_request'
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Node.js 16.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        registry-url: https://npm.pkg.github.com/
-        scope: '@DanielContrerasPGNXT'
     - name: Setup git config
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: PreRelease Node.js module in PR
-      if: github.event_name == 'pull_request'
+    - name: Preparing Beta PreRelease
       env:
-        PRID: ${{ github.event.number }}
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)PR$(echo $PRID)AT$(date +'%Y%m%d%H%M%S')
-        npm version $(echo $VERSION)
-        git add package*.json
-        git push origin HEAD:$(echo ${GITHUB_HEAD_REF}) --force
-        npm publish --access public
-    - name: PreRelease Node.js module in dev
-      if: github.event_name != 'pull_request'
+        git push origin HEAD:beta --force
+    - name: Launching Beta PreRelease
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-      run: |
-        npm publish --dry-run | grep -o "[0-9]\.[0-9]\.[0-9]" > .VERSION
-        VERSION=$(cat .VERSION)ONdevAT$(date +'%Y%m%d%H%M%S')
-        npm version $(echo $VERSION)
-        git add package*.json
-        git push origin HEAD:dev --force
-        npm publish --access public
+        GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        token: ${{ secrets.PRUEBA_TOKEN }}
+        ref: 'refs/heads/beta'
+        workflow: Node.js CI
 
-  release:
-    name: Release
+  build-release:
+    name: Build release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     needs: build
 
     steps:
@@ -120,9 +86,29 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
     - name: Release Node.js module
-      run: |
-        npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
+      run: |
+        npx -p @semantic-release/changelog -p semantic-release semantic-release
+
+  prerelease:
+    name: Pre Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/beta' || github.ref == 'refs/heads/dev'
+    needs: build-release
+
+    steps:
+    - name: Building Prerelease
+      run: echo 'Builded Prerelease'
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: build-release
+
+    steps:
+    - name: Building Release
+      run: echo 'Builded Release'
