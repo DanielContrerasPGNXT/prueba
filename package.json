@@ -15,13 +15,11 @@
       "main",
       {
         "name": "dev",
-        "channel": "dev-prerelease.x",
-        "prerelease": true
+        "prerelease": "dev"
       },
       {
         "name": "beta",
-        "channel": "pr-beta.x",
-        "prerelease": true
+        "channel": "beta"
       }
     ],
     "plugins": [
