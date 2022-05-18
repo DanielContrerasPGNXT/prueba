@@ -1,3 +1,10 @@
+# [2.0.0-feat-version.2](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-feat-version.1...2.0.0-feat-version.2) (2022-05-18)
+
+
+### Bug Fixes
+
+* version ([6994028](https://github.com/DanielContrerasPGNXT/prueba/commit/699402846ba9a81f1f725599ba60380cfa39a808))
+
 # [2.0.0-feat-version.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.2-feat-version.2...2.0.0-feat-version.1) (2022-05-18)
 
 
