@@ -1,3 +1,10 @@
+# [2.0.0-feat-revision.2](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-feat-revision.1...2.0.0-feat-revision.2) (2022-05-18)
+
+
+### Features
+
+* revision ([8ed04d4](https://github.com/DanielContrerasPGNXT/prueba/commit/8ed04d47e20597d22a4d6967dabbc92cd22cca3b))
+
 # [2.0.0-feat-revision.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.1...2.0.0-feat-revision.1) (2022-05-18)
 
 
