@@ -5,11 +5,9 @@
 
 * testing ([5ea006d](https://github.com/DanielContrerasPGNXT/prueba/commit/5ea006d39e36c5cbefff5de875196d0648dcbafb))
 
-
 ### Performance Improvements
 
 * version\n\nBREAKING CHANGE ([433bc90](https://github.com/DanielContrerasPGNXT/prueba/commit/433bc90acd9ca2431bb5920bc622f8808d435bd3))
-
 ## [1.0.1-dev.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.0...1.0.1-dev.1) (2022-05-18)
 
 
