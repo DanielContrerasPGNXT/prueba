@@ -1,4 +1,4 @@
-2.0.0-feat-version.1
+2.0.0-feat-version.1 fixed
 ### Releases
 
 Releases should be made on ```main``` branch
