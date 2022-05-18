@@ -1,6 +1,3 @@
-
-New fix beta version
-
 ### Releases
 
 Releases should be made on ```main``` branch
