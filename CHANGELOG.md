@@ -1,3 +1,10 @@
+## [1.0.1-dev.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.0...1.0.1-dev.1) (2022-05-18)
+
+
+### Bug Fixes
+
+* testing ([5ea006d](https://github.com/DanielContrerasPGNXT/prueba/commit/5ea006d39e36c5cbefff5de875196d0648dcbafb))
+
 ## [1.0.1-fix-testing.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.0...1.0.1-fix-testing.1) (2022-05-18)
 
 
