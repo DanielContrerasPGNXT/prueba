@@ -1,3 +1,15 @@
+# [2.0.0-feat-version.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.2-feat-version.2...2.0.0-feat-version.1) (2022-05-18)
+
+
+### Performance Improvements
+
+* breaking ([1edce67](https://github.com/DanielContrerasPGNXT/prueba/commit/1edce672000a17fc6bde7474f1b66a4e046a289d))
+
+
+### BREAKING CHANGES
+
+* changed version
+
 ## [1.0.2-feat-version.2](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.2-feat-version.1...1.0.2-feat-version.2) (2022-05-18)
 
 
