@@ -1,3 +1,24 @@
+# [2.0.0-feat-revision.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.1...2.0.0-feat-revision.1) (2022-05-18)
+
+
+### Bug Fixes
+
+* revision ([85580e9](https://github.com/DanielContrerasPGNXT/prueba/commit/85580e9aac1e0a47f4c4032bd6109c66990a5efb))
+* version ([6994028](https://github.com/DanielContrerasPGNXT/prueba/commit/699402846ba9a81f1f725599ba60380cfa39a808))
+
+
+### Performance Improvements
+
+* breaking ([1edce67](https://github.com/DanielContrerasPGNXT/prueba/commit/1edce672000a17fc6bde7474f1b66a4e046a289d))
+* version ([f9130ca](https://github.com/DanielContrerasPGNXT/prueba/commit/f9130ca7e522179dec84301a4f7e2c205baa6fc7))
+* version ([3c12978](https://github.com/DanielContrerasPGNXT/prueba/commit/3c12978553094918728b878fa22ae6f80596a726))
+* version\n\nBREAKING CHANGE ([433bc90](https://github.com/DanielContrerasPGNXT/prueba/commit/433bc90acd9ca2431bb5920bc622f8808d435bd3))
+
+
+### BREAKING CHANGES
+
+* changed version
+
 # [2.0.0-dev.1](https://github.com/DanielContrerasPGNXT/prueba/compare/1.0.1...2.0.0-dev.1) (2022-05-18)
 
 
