@@ -1,3 +1,5 @@
+2.1.0-feat-revision.2
+
 ### Releases
 
 Releases should be made on ```main``` branch
