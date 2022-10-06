@@ -27,7 +27,7 @@
       ],
       ["@semantic-release/npm", {
         "npmPublish": false,
-        "tarballDir": "dist"
+        "tarballDir": ".husky"
       }],
       [
         "@semantic-release/git",
@@ -35,8 +35,7 @@
           "assets": [
             "CHANGELOG.md",
             "package.json",
-            "package-lock.json",
-            "testAsset.zip"
+            "package-lock.json"
           ],
           "message": "chore(release): new release ${nextRelease.version} [skip ci]"
         }
