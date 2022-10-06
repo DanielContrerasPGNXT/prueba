@@ -1,55 +1,11 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "2.0.0",
-  "description": "",
+  "version": "2.0.1-dev.1",
+  "description": "Pruebas",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/DanielContrerasPGNXT/prueba"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "release": {
-    "tagFormat": "${version}",
-    "branches": [
-      "main",
-      {
-        "name": "dev",
-        "channel": "prerelease",
-        "prerelease": true
-      },
-      {
-        "name": "fix-*",
-        "prerelease": true
-      },
-      {
-        "name": "feat-*",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "CHANGELOG.md",
-            "package.json",
-            "package-lock.json"
-          ]
-        }
-      ],
-      "@semantic-release/github"
-    ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

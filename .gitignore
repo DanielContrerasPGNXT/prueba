@@ -41,3 +41,6 @@ packages/*/dist
 *.log*
 *-debug.log*
 *-error.log*
+
+# vscode
+*code-workspace*
