@@ -1,3 +1,10 @@
+# [2.0.0-dev.21](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-dev.20...2.0.0-dev.21) (2022-10-06)
+
+
+### Bug Fixes
+
+* pipeline enhancement ([3b5912f](https://github.com/DanielContrerasPGNXT/prueba/commit/3b5912fd6adc7a9c043b6b4f97efa0b29d987c4c))
+
 # [2.0.0-dev.20](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-dev.19...2.0.0-dev.20) (2022-10-06)
 
 
