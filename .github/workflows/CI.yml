@@ -61,13 +61,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
         npx -p @semantic-release/changelog -p @semantic-release/npm -p @semantic-release/git -p @semantic-release/github -p semantic-release semantic-release
-        mkdir out
-        cp -R .husky/* out/
-    - uses: actions/upload-artifact@v3
-      with:
-        name: testAsset
-        path: |
-          out/*
+        zip testAsset.zip .husky/*
     - name: Upload Release Asset
       id: upload-release-asset
       uses: actions/upload-release-asset@v1
