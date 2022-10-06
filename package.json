@@ -1,14 +1,11 @@
 {
   "name": "@DanielContrerasPGNXT/dcaprueba",
-  "version": "2.0.0-dev.2",
+  "version": "2.0.0-dev.10",
   "description": "",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/DanielContrerasPGNXT/prueba"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
