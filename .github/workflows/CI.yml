@@ -69,7 +69,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         UPLOAD_URL: https://uploads.github.com/repos/DanielContrerasPGNXT/prueba/releases/2.0.0-dev.7
       with:
-        upload_url: ${{ github.event.release.upload_url }}
+        upload_url: ${{ github.event.create_release.outputs.upload_url }}
         asset_path: ./testAsset.zip
         asset_name: testAsset.zip
         asset_content_type: application/zip
