@@ -1,3 +1,14 @@
+# [2.0.0-dev.24](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-dev.23...2.0.0-dev.24) (2022-10-06)
+
+
+### Bug Fixes
+
+* pipeline enhancement ([6c4194b](https://github.com/DanielContrerasPGNXT/prueba/commit/6c4194bb637298c0bad93a99f10e1902285259fb))
+* pipeline enhancement ([b0ce43d](https://github.com/DanielContrerasPGNXT/prueba/commit/b0ce43dadf6ff5b7dbfd9f8a00f66b97caa001cf))
+* pipeline enhancement ([cf8f091](https://github.com/DanielContrerasPGNXT/prueba/commit/cf8f09109707961f8f941459b04dd80554a67a95))
+* pipeline enhancement ([e1cb3fa](https://github.com/DanielContrerasPGNXT/prueba/commit/e1cb3fa6a8408a37834356ba41529f1985ac3d53))
+* pipeline enhancement ([229c466](https://github.com/DanielContrerasPGNXT/prueba/commit/229c466281aa7f59a63153ce9c3558ca7a38ae67))
+
 # [2.0.0-dev.23](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-dev.22...2.0.0-dev.23) (2022-10-06)
 
 
