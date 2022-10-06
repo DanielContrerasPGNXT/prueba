@@ -1,3 +1,10 @@
+# [2.0.0-dev.15](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-dev.14...2.0.0-dev.15) (2022-10-06)
+
+
+### Bug Fixes
+
+* pipeline enhancement ([deb5a71](https://github.com/DanielContrerasPGNXT/prueba/commit/deb5a71cfdc08416a01091704b3451101ada64df))
+
 # [2.0.0-dev.14](https://github.com/DanielContrerasPGNXT/prueba/compare/2.0.0-dev.13...2.0.0-dev.14) (2022-10-06)
 
 
