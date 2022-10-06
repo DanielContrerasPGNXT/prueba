@@ -63,7 +63,6 @@ jobs:
         npx -p @semantic-release/changelog -p @semantic-release/npm -p @semantic-release/git -p @semantic-release/github -p semantic-release semantic-release
         mkdir out
         cp -R .husky/* out/
-        cp .* out
     - uses: actions/upload-artifact@v3
       with:
         name: testAsset
