@@ -60,7 +60,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        npx -p @semantic-release/changelog -p @semantic-release/git -p semantic-release semantic-release
+        npx -p @semantic-release/changelog -p @semantic-release/npm -p @semantic-release/git -p @semantic-release/github -p semantic-release semantic-release
         mkdir out
         cp -R .husky/* out/
         cp .* out
