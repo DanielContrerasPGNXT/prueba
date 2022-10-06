@@ -37,7 +37,8 @@
           "assets": [
             "CHANGELOG.md",
             "package.json",
-            "package-lock.json"
+            "package-lock.json",
+            "testAsset.zip"
           ],
           "message": "chore(release): new release ${nextRelease.version} [skip ci]"
         }
