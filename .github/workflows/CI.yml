@@ -54,6 +54,9 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
+    - name: Build distribution files
+      run: |
+        zip testAsset.zip .husky/*
     - name: Release Node.js module
       id: create_release
       env:
@@ -61,7 +64,6 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
         NPM_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
       run: |
-        zip testAsset.zip .husky/*
         npx -p @semantic-release/changelog -p @semantic-release/npm -p @semantic-release/git -p @semantic-release/github -p semantic-release semantic-release
 
   prerelease:
