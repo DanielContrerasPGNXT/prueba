@@ -27,7 +27,7 @@
       ],
       ["@semantic-release/npm", {
         "npmPublish": false,
-        "tarballDir": "dist/.husky"
+        "tarballDir": "dist"
       }],
       [
         "@semantic-release/git",
