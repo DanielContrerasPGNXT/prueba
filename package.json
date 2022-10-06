@@ -22,5 +22,8 @@
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "husky": "^8.0.1"
+  },
+  "dependencies": {
+    "@DanielContrerasPGNXT/dcaprueba": "^2.0.0-dev.22"
   }
 }
