@@ -74,7 +74,7 @@ jobs:
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PRUEBA_TOKEN }}
-        UPLOAD_URL: echo "https://github.com/DanielContrerasPGNXT/prueba/releases/tag/2.0.0-dev.3"
+        UPLOAD_URL: https://github.com/DanielContrerasPGNXT/prueba/releases/tag/2.0.0-dev.3
       with:
         upload_url: ${{ UPLOAD_URL }}
         asset_path: ./testAsset.zip
